@@ -29,7 +29,7 @@ const SignUp2 = () => {
         password
       );
       console.log(userCredential);
-      // const user = userCredential.user;
+      const user = userCredential.user;
       localStorage.setItem("token", user.accessToken);
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/Dashboard");
