@@ -1,9 +1,9 @@
 import { signOut } from "firebase/auth";
 import React from "react";
-import { auth } from "../FirebaseAuth";
+import { auth } from "./FirebaseAuth";
 import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Homepg = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
@@ -27,4 +27,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Homepg;

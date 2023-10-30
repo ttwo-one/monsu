@@ -1,62 +1,57 @@
 import React, { useState } from "react";
-import { Link } from "react-scroll";
-import {FaTimes} from "react-icons/fa";
-import {CiMenuFries} from "react-icons/ci";
-import Logo from "../assets/logo.png"
-
+// import { Link } from 'react-scroll';
+import { Link } from "react-router-dom";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import Logo from "../assets/logo.png";
 
 const Navbar = () => {
-    const [click, setClick] = useState(false);
-    const handleClick = () =>  setClick(!click);
-  
-    const content = <>
-        <div className="lg:hidden block absolute top-16 w-full left-0 right-0 bg-emerald-500 transition">
-            <ul className="text-center text-xl p-20">
-                <Link spy={true} smooth={true} to="Home">
-                    <li className="my-3 py-4 border-b border-slate-800 hover:bg-white hover:rounded">Home</li>
-                </Link >
-                <Link spy={true} smooth={true} to="About">
-                    <li className="my-3 py-4 border-b border-slate-800 hover:bg-white hover:rounded">About</li>
-                </Link>
-                <Link spy={true} smooth={true} to="SignIn">
-                    <li className="my-3 py-4 border-b border-slate-800 hover:bg-white hover:rounded">SignIn</li>
-                </Link>
-            </ul>
+  const [nav, setNav] = useState(false);
+
+  const handleNav = () => {
+    setNav(!nav);
+  };
+
+  return (
+    <div className="flex w-full justify-between items-center h-24 max-w-[1490px] text-black absolute z-10 px-10">
+      <img src={Logo} alt="logo" className="md:ml-24 w-14" />
+      <h1 className="px-4 w-full text-2xl font-bold text-white">MONSU.</h1>
+
+      <ul className="font-bold text-lg text-white hidden md:flex mr-24">
+        <li className="px-8 hover:text-emerald-900 transition cursor-pointer">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="mx-5 px-8 hover:text-emerald-900 transition cursor-pointer">
+          <Link to="About">About</Link>
+        </li>
+        <li className="px-8 hover:text-emerald-900 transition cursor-pointer">
+          <Link to="Login">Login</Link>
+        </li>
+      </ul>
+
+      <div onClick={handleNav} className="block md:hidden">
+        {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
+      </div>
+      <ul
+        className={
+          nav
+            ? "fixed right-8 top-20 w-[35%] h-56 rounded-2xl bg-gradient-to-b from-emerald-500 to-emerald-400 ease-in-out duration-500"
+            : "ease-in-out duration-500 fixed left-[-100%]"
+        }
+      >
+        <div className="font-bold text-xl text-center text-white">
+          <li className="mt-5 mx-6 py-3 px-4 hover:text-emerald-900 transition cursor-pointer">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="my-3 mx-6 py-3 px-4 hover:text-emerald-900 transition cursor-pointer">
+            <Link to="About">About</Link>
+          </li>
+          <li className="mx-6 py-3 px-4 hover:text-emerald-900 transition cursor-pointer">
+            <Link to="Login">Login</Link>
+          </li>
         </div>
-    </>
-    return (
-        <nav>
-            <div className="h-10vh flex justify-between z-50 text-black lg:py-5 px-20 py-4 bg-emerald-500">
-                <div className="flex items-center flex-1">
-                    <img src={Logo} alt="logo" className="w-9 h-9 mr-2" />
-                    <h1 className='w-full text-2xl font-bold text-black'>MonSu.</h1>
-                </div>
-                <div className="lg:flex md:flex lg: flex-1 items center justify-end font-normal hidden">
-                    <div className="flex-10">
-                    <ul className="flex gap-20 mr-16 text-[18px]">
-                <Link spy={true} smooth={true} to="Home">
-                    <li className="hover:text-white transition border-b-2 border-slate-900 hover:border-white cursor-pointer">Home</li>
-                </Link>
-                <Link spy={true} smooth={true} to="About">
-                    <li className="hover:text-white transition border-b-2 border-slate-900 hover:border-white cursor-pointer">About</li>
-                </Link>
-                <Link spy={true} smooth={true} to="SignIn">
-                    <li className="hover:text-white transition border-b-2 border-slate-900 hover:border-white cursor-pointer">SignIn</li>
-                </Link>
-            </ul>
-                    </div>
-                </div>
-                <div>
-                    {click && content}
-                </div>
-
-                <button className="block sm:hidden transtion" onClick={handleClick}>
-                    {click ? <FaTimes/> : <CiMenuFries/>}
-                </button>
-
-            </div>
-        </nav>
-    );
+      </ul>
+    </div>
+  );
 };
 
 export default Navbar;
