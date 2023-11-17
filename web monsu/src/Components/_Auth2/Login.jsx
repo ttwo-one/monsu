@@ -2,11 +2,11 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "./FirebaseAuth";
-import img from "../../assets/Bg-lp-fix.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,7 +23,7 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/Dashboard");
     } catch (error) {
-      console.error(error);
+      setError("Email atau password kamu salah");
     }
   };
 
@@ -40,7 +40,7 @@ const Login = () => {
             <label>Email</label>
             <input
               type="email"
-              className="text-center rounded-xl bg-gray-100 p-1"
+              className="text-center text-black rounded-xl bg-gray-100 p-1"
               placeholder="Your Email"
               required
               value={email}
@@ -51,7 +51,7 @@ const Login = () => {
             <label>Password</label>
             <input
               type="password"
-              className="text-center rounded-xl bg-gray-100 p-1"
+              className="text-center text-black rounded-xl bg-gray-100 p-1"
               placeholder="Your Password"
               required
               value={password}

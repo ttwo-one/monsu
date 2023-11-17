@@ -9,7 +9,7 @@ const Home = () => {
         src={img}
         alt="img"
       /> */}
-      <div className="bg-black/30 absolute top-0 w-full h-full flex flex-col justify-center text-white">
+      <div className=" absolute top-0 w-full h-full flex flex-col justify-center text-white">
         <div className="md:left-[10%] max-w-[1100px] m-auto absolute p-10">
           <h2 className="text-5xl font-semibold leading-tight">
             Monitoring Suhu

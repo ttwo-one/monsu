@@ -2,21 +2,30 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "./FirebaseAuth";
-import { collection, addDoc } from "firebase/firestore";
-import img from "../../assets/Bg-lp-fix.png";
+import { doc, setDoc } from "firebase/firestore";
 
 const SignUp2 = () => {
   const [namaLengkap, setNamaLengkap] = useState("");
   const [noHp, setNoHp] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dbref = collection(db, "userInfo");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(dbref, {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      // console.log(userCredential);
+      const user = userCredential.user;
+      const dbref = doc(db, "userInfo", user.uid);
+
+      await setDoc(dbref, {
         NamaLengkap: namaLengkap,
         NoHp: noHp,
         Email: email,
@@ -24,20 +33,17 @@ const SignUp2 = () => {
       });
       alert("Sign In Successfully");
 
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      console.log(userCredential);
-      const user = userCredential.user;
-      localStorage.setItem("token", user.accessToken);
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/Dashboard");
+      // localStorage.setItem("token", user.accessToken);
+      // localStorage.setItem("user", JSON.stringify(user));
+      navigate("/Login");
     } catch (error) {
-      console.error(error);
+      setError(error.message);
+      console.error("Error signing up:", error);
     }
+    setEmail("");
+    setNamaLengkap("");
+    setNoHp("");
+    setPassword("");
   };
 
   return (
