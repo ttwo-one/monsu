@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "./_Auth2/Login";
-import img from "../assets/Bg-lp-fix.png"
+import img from "../assets/Bg-lp-fix.png";
 
 const LPage = () => {
   return (

@@ -1,8 +1,11 @@
 import React from "react";
 import img from "../assets/Bg-lp-fix.png";
+import Navbar from "../Components/Navbar";
 
 const About = () => {
   return (
+    <>
+    <Navbar/>
     <div className="w-full h-screen relative bg-[url('/src/assets/Bg-lp-fix.png')]">
       <div className="bg-black/30 absolute top-0 w-full h-full flex flex-col justify-center text-white">
         <div className="md:left-[10%] max-w-[1100px] m-auto absolute p-10">
@@ -20,6 +23,7 @@ const About = () => {
       //   <img src={img} alt="img" />
       // </div> */}
     </div>
+    </>
   );
 };
 

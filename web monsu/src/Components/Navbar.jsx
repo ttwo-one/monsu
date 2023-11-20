@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import { Link } from 'react-scroll';
 import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/Newlogo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -21,10 +21,10 @@ const Navbar = () => {
           <Link to="/">Home</Link>
         </li>
         <li className="mx-5 px-8 hover:text-emerald-900 transition cursor-pointer">
-          <Link to="About">About</Link>
+          <Link to="/About">About</Link>
         </li>
         <li className="px-8 hover:text-emerald-900 transition cursor-pointer">
-          <Link to="Login">Login</Link>
+          <Link to="/Login">Login</Link>
         </li>
       </ul>
 
@@ -43,10 +43,10 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="my-3 mx-6 py-3 px-4 hover:text-emerald-900 transition cursor-pointer">
-            <Link to="About">About</Link>
+            <Link to="/About">About</Link>
           </li>
           <li className="mx-6 py-3 px-4 hover:text-emerald-900 transition cursor-pointer">
-            <Link to="Login">Login</Link>
+            <Link to="/Login">Login</Link>
           </li>
         </div>
       </ul>
